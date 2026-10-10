@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Equipment Reservation and Management System | City of Malabon University</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="css/final.css">
+</head>
+<body>
+
+<section id="login">
+  <form id="lf" class="box">
+    <div class="seal">CMU</div>
+    <h1>City of Malabon University</h1>
+    <p class="sub">Equipment Reservation System</p>
+    <label for="uid">Username</label>
+    <input id="uid" name="username" autocomplete="username" required placeholder="Enter your CMU ID" aria-describedby="lerr">
+    <label for="pw">Password</label>
+    <div class="pwrow">
+      <input id="pw" name="password" type="password" autocomplete="current-password" required placeholder="Enter password" aria-describedby="lerr">
+      <button type="button" class="eye" data-a="togglePw" data-t="pw" aria-label="Show or hide password">👁</button>
+    </div>
+    <div id="lerr" class="err" role="alert"></div>
+    <button class="btn full" type="submit">Login</button>
+    <button type="button" class="link fp" data-a="forgot">Forgot password?</button>
+    <p class="swi">New CMU member? <button type="button" class="link" data-a="showSignup">Create account</button></p>
+    <p id="admin-setup-link" class="swi" hidden><button type="button" class="link" data-a="showAdminSetup">Set up first administrator</button></p>
+  </form>
+  <form id="sf" class="box" hidden>
+    <div class="seal">CMU</div>
+    <h1>Create Account</h1>
+    <p class="sub">CMU Member Registration</p>
+    <label for="sun">Full name</label>
+    <input id="sun" autocomplete="name" required placeholder="Last name, First name M.">
+    <label for="suid">CMU ID</label>
+    <input id="suid" autocomplete="username" required pattern="[0-9]{9}" placeholder="Enter your 9-digit CMU ID" inputmode="numeric" maxlength="9" aria-describedby="id-hint">
+    <small class="hint" id="id-hint">Use the 9-digit member ID assigned to you by CMU.</small>
+    <label for="sut">Member type</label>
+    <select id="sut"><option>Student</option><option>Faculty</option><option>Authorized Personnel</option></select>
+    <label for="sud">Department / College</label>
+    <input id="sud" required placeholder="Enter your department or college">
+    <label for="sue">Email</label>
+    <input id="sue" type="email" autocomplete="email" required placeholder="name@cmu.edu.ph">
+    <label for="sup">Password</label>
+    <div class="pwrow">
+      <input id="sup" type="password" autocomplete="new-password" required minlength="6" placeholder="At least 6 characters">
+      <button type="button" class="eye" data-a="togglePw" data-t="sup" aria-label="Show or hide password">👁</button>
+    </div>
+    <label for="sup2">Confirm password</label>
+    <div class="pwrow">
+      <input id="sup2" type="password" autocomplete="new-password" required minlength="6" placeholder="Re-enter password">
+      <button type="button" class="eye" data-a="togglePw" data-t="sup2" aria-label="Show or hide password">👁</button>
+    </div>
+    <div id="suerr" class="err" role="alert"></div>
+    <button class="btn full" type="submit">Create Account</button>
+    <p class="swi">Already have an account? <button type="button" class="link" data-a="showLogin">Back to login</button></p>
+  </form>
+  <form id="af" class="box" hidden>
+    <div class="seal">CMU</div>
+    <h1>First Administrator Setup</h1>
+    <p class="sub">Create the first local administrator account.</p>
+    <p class="note warn">This browser-only setup cannot verify that you are authorized. Anyone with access to this app before an administrator exists can create the first administrator. Do not use this as production access control.</p>
+    <label for="an">Full name</label>
+    <input id="an" autocomplete="name" required placeholder="Enter the authorized administrator's name">
+    <label for="aid">CMU ID</label>
+    <input id="aid" autocomplete="username" required pattern="[0-9]{9}" inputmode="numeric" maxlength="9" placeholder="Enter the administrator's 9-digit CMU ID">
+    <label for="ad">Department / Office</label>
+    <input id="ad" required placeholder="Enter department or office">
+    <label for="ae">Email</label>
+    <input id="ae" type="email" autocomplete="email" required placeholder="Enter the administrator's email">
+    <label for="apw">Choose password</label>
+    <div class="pwrow">
+      <input id="apw" type="password" autocomplete="new-password" required minlength="6" placeholder="At least 6 characters">
+      <button type="button" class="eye" data-a="togglePw" data-t="apw" aria-label="Show or hide password">👁</button>
+    </div>
+    <label for="apw2">Confirm password</label>
+    <div class="pwrow">
+      <input id="apw2" type="password" autocomplete="new-password" required minlength="6" placeholder="Re-enter password">
+      <button type="button" class="eye" data-a="togglePw" data-t="apw2" aria-label="Show or hide password">👁</button>
+    </div>
+    <div id="aerr" class="err" role="alert"></div>
+    <button class="btn full" type="submit">Create First Administrator</button>
+    <p class="swi"><button type="button" class="link" data-a="showLogin">Back to login</button></p>
+  </form>
+</section>
+
+<div id="uapp" hidden>
+  <div class="phone">
+    <header class="uh">
+      <button id="back" class="ib" data-a="back" aria-label="Back">←</button>
+      <h2 id="ut"></h2>
+      <button class="ib bell" data-a="bell" aria-label="Notifications">🔔<span class="bc" id="ubc"></span></button>
+    </header>
+    <main id="uview"></main>
+    <nav id="unav" aria-label="Member navigation"></nav>
+    <div id="umenu" hidden></div>
+  </div>
+</div>
+
+<div id="aapp" hidden>
+  <aside id="side">
+    <div class="ap">CMU<span class="apx"> Equipment Office</span><small>Administration</small></div>
+    <nav id="anav" aria-label="Administration navigation"></nav>
+  </aside>
+  <div class="amain">
+    <header class="ah">
+      <h2 id="at"></h2>
+      <div class="hr">
+        <button class="ib dark bell" data-a="bell" aria-label="Notifications">🔔<span class="bc" id="abc"></span></button>
+        <span id="awho"></span>
+      </div>
+    </header>
+    <main id="aview"></main>
+  </div>
+  <nav id="abnav" aria-label="Main navigation"></nav>
+</div>
+
+<div id="bellbox" hidden></div>
+<div id="modal" hidden></div>
+<div id="toasts" role="status" aria-live="polite" aria-atomic="false"></div>
+<noscript><p class="noscript">Enable JavaScript to use the CMU Equipment Reservation System.</p></noscript>
+
+<script src="js/vendor/qrcode.min.js"></script>
+<script src="js/storage.js"></script>
+<script src="script.js"></script>
+<script src="js/reports.js"></script>
+<script src="js/interface.js"></script>
+</body>
+</html>
